@@ -1,0 +1,8 @@
+{
+  "name": "Risk Management System",
+  "description": "A comprehensive risk management application for Prov. Sulawesi Barat with full account management, Firestore persistence, and Google Sheets integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

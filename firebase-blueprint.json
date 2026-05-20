@@ -1,0 +1,37 @@
+{
+  "entities": {
+    "Account": {
+      "title": "User Account",
+      "description": "System user account for specific OPD",
+      "type": "object",
+      "properties": {
+        "username": { "type": "string", "description": "Login username" },
+        "password": { "type": "string", "description": "Login password" },
+        "role": { "type": "string", "enum": ["Administrator", "User"] },
+        "opdName": { "type": "string", "description": "Name of the OPD" },
+        "spreadsheetId": { "type": "string", "description": "ID of the linked Google Spreadsheet" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "registeredAt": { "type": "string", "description": "Display date of registration" }
+      },
+      "required": ["username", "password", "role"]
+    },
+    "AppConfig": {
+        "title": "App Configuration",
+        "description": "Global settings for the application",
+        "type": "object",
+        "properties": {
+            "adminEmail": { "type": "string" }
+        }
+    }
+  },
+  "firestore": {
+    "/accounts/{accountId}": {
+      "schema": "Account",
+      "description": "Collection of user accounts"
+    },
+    "/config/global": {
+        "schema": "AppConfig",
+        "description": "Global application configuration"
+    }
+  }
+}

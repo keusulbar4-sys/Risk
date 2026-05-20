@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() { return isSignedIn() && request.auth.token.email == 'keusulbar4@gmail.com'; }
+
+    // Admin can do everything
+    match /{document=**} {
+      allow read, write: if isAdmin();
+    }
+
+    // Login logic: allow public access to accounts and config for global persistence
+    match /accounts/{accountId} {
+      allow read, write: if true;
+    }
+    
+    match /config/global {
+      allow read, write: if true;
+    }
+  }
+}
